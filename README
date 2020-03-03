@@ -1,0 +1,20 @@
+Cloning the source code repository:
+
+  git clone https://github.com/slowcntl/slowcntl
+  cd slowcntl
+
+Building docker image:
+
+  docker image build -t slowcntl .
+
+Creating data volume:
+
+  docker volume create slowcntl
+
+Creating docker container:
+
+  docker container create --name slowcntl -v slowcntl:/data -p 1880:1880 -p 1883:1883 -p 3000:3000 -p 8086:8086 slowcntl
+
+Starting docker container:
+
+  docker container start slowcntl
