@@ -1,6 +1,6 @@
 Cloning the source code repository:
 
-  git clone https://github.com/slowcntl/slowcntl
+  git clone https://github.com/slowcntl/slowcntl-docker
   cd slowcntl
 
 Building docker image:
