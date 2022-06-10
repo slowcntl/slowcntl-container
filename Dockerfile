@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV LANG C.UTF-8
@@ -12,11 +12,11 @@ RUN apt-get update \
     software-properties-common \
     supervisor \
     mosquitto \
- && curl -fsSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - \
- && add-apt-repository "deb https://deb.nodesource.com/node_10.x bionic main" \
- && curl -fsSL https://repos.influxdata.com/influxdb.key | apt-key add - \
- && add-apt-repository "deb https://repos.influxdata.com/ubuntu bionic stable" \
- && curl -fsSL https://packages.grafana.com/gpg.key | apt-key add - \
+ && curl -fsSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | gpg --dearmor -o /etc/apt/trusted.gpg.d/nodesource.gpg \
+ && add-apt-repository "deb https://deb.nodesource.com/node_16.x focal main" \
+ && curl -fsSL https://repos.influxdata.com/influxdb.key | gpg --dearmor -o /etc/apt/trusted.gpg.d/influxdb.gpg \
+ && add-apt-repository "deb https://repos.influxdata.com/ubuntu focal stable" \
+ && curl -fsSL https://packages.grafana.com/gpg.key | gpg --dearmor -o /etc/apt/trusted.gpg.d/grafana.gpg \
  && add-apt-repository "deb https://packages.grafana.com/oss/deb stable main" \
  && apt-get update \
  && apt-get install -yq --no-install-recommends \
@@ -24,7 +24,7 @@ RUN apt-get update \
     influxdb \
     nodejs \
  && rm -rf /var/lib/apt/lists/* \
- && npm install -g --unsafe-perm \
+ && npm install --location=global --unsafe-perm \
     node-red \
     node-red-dashboard \
     node-red-node-email \
