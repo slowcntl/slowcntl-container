@@ -1,6 +1,6 @@
 Cloning the source code repository:
 
-  git clone https://github.com/slowcntl/slowcntl-podman
+  git clone https://github.com/slowcntl/slowcntl-container
   cd slowcntl
 
 Building podman image:
