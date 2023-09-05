@@ -1,4 +1,4 @@
-FROM docker.io/debian:bullseye-slim
+FROM docker.io/debian:bookworm-slim
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV LANG C.UTF-8
@@ -12,9 +12,9 @@ RUN apt-get update \
     supervisor \
     mosquitto \
  && curl -fsSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | gpg --dearmor -o /etc/apt/trusted.gpg.d/nodesource.gpg \
- && echo "deb https://deb.nodesource.com/node_16.x bullseye main" > /etc/apt/sources.list.d/nodesource.list \
- && curl -fsSL https://repos.influxdata.com/influxdb.key | gpg --dearmor -o /etc/apt/trusted.gpg.d/influxdb.gpg \
- && echo "deb https://repos.influxdata.com/debian bullseye stable" > /etc/apt/sources.list.d/influxdata.list \
+ && echo "deb https://deb.nodesource.com/node_18.x bookworm main" > /etc/apt/sources.list.d/nodesource.list \
+ && curl -fsSL https://repos.influxdata.com/influxdata-archive_compat.key | gpg --dearmor -o /etc/apt/trusted.gpg.d/influxdb.gpg \
+ && echo "deb https://repos.influxdata.com/debian stable main" > /etc/apt/sources.list.d/influxdata.list \
  && curl -fsSL https://packages.grafana.com/gpg.key | gpg --dearmor -o /etc/apt/trusted.gpg.d/grafana.gpg \
  && echo "deb https://packages.grafana.com/oss/deb stable main" > /etc/apt/sources.list.d/grafana.list \
  && apt-get update \
